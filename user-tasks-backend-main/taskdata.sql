@@ -164,7 +164,7 @@ ALTER TABLE `task`
 -- Ограничения внешнего ключа таблицы `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `FK_comment_task` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
+  ADD CONSTRAINT `FK_comment_task` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_comment_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
   
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
