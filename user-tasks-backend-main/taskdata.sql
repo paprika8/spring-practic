@@ -54,6 +54,16 @@ CREATE TABLE `task` (
   `mime_type` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+--
+-- Структура таблицы `comment`
+--
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `task_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `task`
@@ -95,6 +105,13 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_comment_task` (`task_id`),
+  ADD KEY `FK_comment_user` (`user_id`);
+--
 -- Индексы таблицы `task`
 --
 ALTER TABLE `task`
@@ -119,6 +136,11 @@ ALTER TABLE `user`
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT для таблицы `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT для таблицы `task`
 --
 ALTER TABLE `task`
@@ -138,7 +160,13 @@ ALTER TABLE `user`
 ALTER TABLE `task`
   ADD CONSTRAINT `FK2hsytmxysatfvt0p1992cw449` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FKkjb4pwpo8oqc8fvkgbmiitsu9` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
-
+--
+-- Ограничения внешнего ключа таблицы `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `FK_comment_task` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
+  ADD CONSTRAINT `FK_comment_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
