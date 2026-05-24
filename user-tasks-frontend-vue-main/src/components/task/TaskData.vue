@@ -26,6 +26,7 @@
           </div>
         </div>
       </form>
+      <CommentCard :task-id="id"/>
     </div>
   </div>
   <router-link v-else to="/myTasks"/>
@@ -33,9 +34,13 @@
 
 <script>
   import http from "../../http-common";
+  import CommentCard from "../comment/CommentCard.vue";
 
   export default {
     name: "task-details",
+    components: {
+      CommentCard
+    },
     props: ['id'],
     data() {
       return {

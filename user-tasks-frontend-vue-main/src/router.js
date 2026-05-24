@@ -11,6 +11,7 @@ import ListTasks from "./components/task/ListTasks";
 import AddTask from "./components/task/AddTask";
 import TaskData from "./components/task/TaskData";
 import UserTasks from "./components/task/UserTasks";
+import Comment from "./components/comment/Comment";
 
 import { createWebHistory, createRouter } from "vue-router";
 
@@ -64,6 +65,15 @@ const routes = [
         props: true,
         meta: {
             title: "Задача"
+        }
+    },
+    {
+        path: "/comment/:id",
+        name: "comment-details",
+        component: Comment,
+        props: true,
+        meta: {
+            title: "Комментарий"
         }
     },
     {
